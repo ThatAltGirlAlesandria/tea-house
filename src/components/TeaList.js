@@ -2,8 +2,9 @@ import React from "react";
 import Tea from "./Tea";
 import PropTypes from "prop-types";
 
-export default function TeaList() {
+export default function TeaList(props) {
   return (
+    <>
     {props.teaList.map((tea) =>
       <Tea 
       whenTeaClicked = { props.onTeaSelection }
@@ -12,6 +13,7 @@ export default function TeaList() {
       size = { tea.size }
       />
     )}
+    </>
   );
 }
 

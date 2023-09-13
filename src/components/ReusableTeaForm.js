@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default function ReusableTeaForm(props) {
   return (
     <>
-      <form onSubmit={formSubmissionHandler}>
+      <form onSubmit={props.formSubmissionHandler}>
         <input
           type="text"
           name="type"
