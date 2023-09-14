@@ -12,7 +12,7 @@ export default function EditTealForm(props) {
     make: e.target.make.value,
     description: e.target.description.value,
     size: e.target.size.value,
-    id: v4()
+    id: tea.id
   });
 }
   return(

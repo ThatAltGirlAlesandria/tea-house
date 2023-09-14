@@ -12,6 +12,8 @@ export default function TeaList(props) {
   
   return (
     <>
+    <h3>Tea Inventory</h3>
+    
     {props.teaList.map((tea) =>
       <Tea 
       whenSellClicked = {props.onSellTeaClicked}
