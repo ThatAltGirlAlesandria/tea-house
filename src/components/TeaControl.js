@@ -2,6 +2,7 @@ import React from "react";
 import TeaList from "./TeaList";
 import NewTeaForm from "./NewTeaForm";
 import TeaDetail from "./TeaDetails";
+import EditTealForm from "./EditTea";
 
 class TeaControl extends React.Component {
   constructor(props){
@@ -9,7 +10,8 @@ class TeaControl extends React.Component {
     this.state= {
       mainTeaList: [],
       formVisibleOnPage: false,
-      selectedTea: null
+      selectedTea: null,
+      editing: false
     }
   }
 
@@ -17,7 +19,8 @@ class TeaControl extends React.Component {
     if (this.setState.selectedTea != null) {
       this.setState({
         formVisibleOnPage: false,
-        selectedTea: null
+        selectedTea: null,
+        editing: false
       });
     } else {
       this.setState(prevState => ({
@@ -39,29 +42,44 @@ class TeaControl extends React.Component {
     this.setState ({selectedTea: selectedTea});
   }
 
+  handleEditingTeaInList = (teaToEdit) => {
+    const editedMainTeaList = this.state.mainTeaList
+    .filter(tea => tea.id !== this.state.selectedTea.id)
+    .concat(teaToEdit);
+    this.setState({
+      mainTeaList: editedMainTeaList,
+      editing: false,
+      selectedTea: null
+    })
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    let button = null;
 
-    if (this.state.selectedTea != null) {
+
+    if (this.state.editing) {
+      currentlyVisibleState = <EditTealForm
+        tea = {this.state.selectedTea}
+        onEditOrder = {this.handleEditingTeaInList} />
+      buttonText = "Return to Tea List";
+    } else if (this.state.selectedTea != null) {
       currentlyVisibleState = <TeaDetail 
-        tea = {this.state.selectedTea} />
-        buttonText = "Return to Tea List";
-        button = <button onClick={this.handleClick}> {buttonText} </button>  
+        tea = {this.state.selectedTea} 
+        onClickingEdit = {this.state.handleEditClick} />
+        buttonText = "Return to Tea List"; 
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewTeaForm onNewTeaOrder={this.handleAddingNewTeaToList} />
       buttonText = "Return to Tea List"
     } else {
       currentlyVisibleState = <TeaList teaList={this.state.mainTeaList} onTeaSelection = {this.handleChangeSelectedTea} />
       buttonText="Add Tea";
-      button = <button onClick={this.handleClick}>{buttonText}</button>
     }
 
     return (
       <>
         {currentlyVisibleState}
-        {button}
+        <button onClick={this.handleClick}>{buttonText}</button>
       </>
     )
   }

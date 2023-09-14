@@ -10,6 +10,7 @@ export default function TeaDetail (props) {
       <h3>Tea Make: {tea.make}</h3>
       <h4>Description: {tea.description}</h4>
       <h4>Quantity: <em>{tea.size}</em></h4>
+      <button onClick = {props.onClickingEdit}>Edit Tea</button>
     </>
   );
 }
