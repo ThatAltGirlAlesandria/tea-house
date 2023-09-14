@@ -9,7 +9,7 @@ export default function NewTeaForm(props) {
       type: e.target.type.value,
       make: e.target.make.value,
       description: e.target.description.value,
-      size: e.target.size.value,
+      size: parseInt(e.target.size.value),
       id: v4()
     });
   }

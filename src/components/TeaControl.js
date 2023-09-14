@@ -61,11 +61,20 @@ class TeaControl extends React.Component {
     })
   }
 
+  handleTeaSale = (id) => {
+    const selectedTea = this.state.mainTeaList.filter(tea => tea.id === id)[0];
+    if (selectedTea.quantity >=1) {
+      const soldTea = { ...selectedTea, size: selectedTea.size -1};
+      const newMainTeaList = this.state.mainTeaList.filter(tea => tea.id !== id).concat(soldTea);
+      this.setState({
+        mainTeaList: newMainTeaList
+      });
+    }
+  }
 
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-
 
     if (this.state.editing) {
       currentlyVisibleState = <EditTealForm
@@ -82,8 +91,11 @@ class TeaControl extends React.Component {
       currentlyVisibleState = <NewTeaForm onNewTeaOrder={this.handleAddingNewTeaToList} />
       buttonText = "Return to Tea List"
     } else {
-      currentlyVisibleState = <TeaList teaList={this.state.mainTeaList} onTeaSelection = {this.handleChangeSelectedTea} />
-      buttonText="Add Tea";
+      currentlyVisibleState = <TeaList 
+        teaList = {this.state.mainTeaList} 
+        onTeaSelection = {this.handleChangeSelectedTea} 
+        onSellTeaClicked = {this.handleTeaSale}/>
+        buttonText = "Add Tea";
     }
 
     return (

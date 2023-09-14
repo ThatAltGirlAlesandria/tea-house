@@ -14,10 +14,12 @@ export default function TeaList(props) {
     <>
     {props.teaList.map((tea) =>
       <Tea 
+      whenSellClicked = {props.onSellTeaClicked}
       whenTeaClicked = { props.onTeaSelection }
       type = { tea.type }
       make = { tea.make }
       size = { tea.size }
+      id = { tea.id }
       />
     )}
     {emptyList}
@@ -27,5 +29,6 @@ export default function TeaList(props) {
 
 TeaList.propTypes = {
   teaList: PropTypes.array,
-  onTeaSelection: PropTypes.fun
+  onTeaSelection: PropTypes.func,
+  onSellTeaClicked: PropTypes.func
 }
