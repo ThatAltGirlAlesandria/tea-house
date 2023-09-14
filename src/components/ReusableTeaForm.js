@@ -20,6 +20,11 @@ export default function ReusableTeaForm(props) {
           name="size"
           placeholder="Order Size."
         />
+        <input
+          type="text"
+          name="description"
+          placeholder="Description."
+        />
         <button type="submit">{props.buttonText}</button>
       </form>
     </>

@@ -8,6 +8,7 @@ export default function NewTeaForm(props) {
     props.onNewTeaOrder({
       type: e.target.type.value,
       make: e.target.make.value,
+      description: e.target.description.value,
       size: e.target.size.value,
       id: v4()
     });
