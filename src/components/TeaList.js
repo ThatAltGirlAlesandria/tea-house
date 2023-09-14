@@ -3,6 +3,13 @@ import Tea from "./Tea";
 import PropTypes from "prop-types";
 
 export default function TeaList(props) {
+  const availableTea = props.teaList;
+  let emptyList = null;
+  if (availableTea.length === 0) {
+    emptyList = 
+      <h2>Currently, our tea is sold out. We're working hard to restock items for you.</h2>
+  }
+  
   return (
     <>
     {props.teaList.map((tea) =>
@@ -13,11 +20,12 @@ export default function TeaList(props) {
       size = { tea.size }
       />
     )}
+    {emptyList}
     </>
   );
 }
 
 TeaList.propTypes = {
-  tealist: PropTypes.array,
+  teaList: PropTypes.array,
   onTeaSelection: PropTypes.fun
 }
