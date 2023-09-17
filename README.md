@@ -22,7 +22,7 @@ A React web application that tracks the stores inventory.
 
 ## Component Diagram
 
-![component diagram](src/components/img/ComponentDiagram.png)
+![Component Diagram](src/components/img/ComponentDiagram.png)
 
 ## Setup/Installation Requirements
 
