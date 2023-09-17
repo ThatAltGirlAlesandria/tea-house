@@ -24,7 +24,7 @@ export default function EditTealForm(props) {
   );
 }
 
-EditVinylForm.PropTypes = {
-  vinyl: PropTypes.onject,
+EditTeaForm.PropTypes = {
+  tea: PropTypes.object,
   onEditOrder: PropTypes.fun
 }

@@ -38,7 +38,7 @@ class TeaControl extends React.Component {
   }
 
   handleChangeSelectedTea = (id) => {
-    const selectedTea = this.state.mainTeaList.filter(tea => vinyl.id === id)[0];
+    const selectedTea = this.state.mainTeaList.filter(tea => tea.id === id)[0];
     this.setState ({selectedTea: selectedTea});
   }
 
