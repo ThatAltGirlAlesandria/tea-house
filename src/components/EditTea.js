@@ -6,15 +6,16 @@ export default function EditTealForm(props) {
   const { tea } = props;
 
   function handleEditTeaFormSubmission(e) {
-  e.preventDefault();
-  props.onEditOrder({
-    type: e.target.type.value,
-    make: e.target.make.value,
-    description: e.target.description.value,
-    size: e.target.size.value,
-    id: tea.id
-  });
-}
+    e.preventDefault();
+    props.onEditOrder({
+      type: e.target.type.value,
+      make: e.target.make.value,
+      description: e.target.description.value,
+      size: e.target.size.value,
+      id: tea.id
+    });
+  }
+
   return(
     <>
       <ReusableTeaForm
@@ -24,7 +25,7 @@ export default function EditTealForm(props) {
   );
 }
 
-EditTeaForm.PropTypes = {
+EditTeaForm.propTypes = {
   tea: PropTypes.object,
-  onEditOrder: PropTypes.fun
+  onEditOrder: PropTypes.func
 }

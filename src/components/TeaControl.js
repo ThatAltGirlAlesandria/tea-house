@@ -29,6 +29,10 @@ class TeaControl extends React.Component {
     }
   }
 
+  handleEditClick = () => {
+    this.setState({editing : true});
+  }
+
   handleAddingNewTeaToList = (newTea) => {
     const newMainTeaList = this.state.mainTeaList.concat(newTea);
     this.setState({

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-function Tea(props) {
+
+export default function Tea(props) {
   return (
     <>
       <h3>{props.type}</h3>
@@ -20,5 +21,3 @@ Tea.propTypes = {
   whenTeaClicked: PropTypes.func,
   whenSellClicked: PropTypes.func
 };
-
-export default Tea;
