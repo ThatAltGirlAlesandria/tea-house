@@ -2,16 +2,16 @@ import React from "react";
 import TeaList from "./TeaList";
 import NewTeaForm from "./NewTeaForm";
 import TeaDetail from "./TeaDetails";
-import EditTealForm from "./EditTea";
+import EditTeaForm from "./EditTea";
 
 class TeaControl extends React.Component {
   constructor(props){
     super(props);
-    this.state= {
-      mainTeaList: [],
+    this.state = {
       formVisibleOnPage: false,
       selectedTea: null,
-      editing: false
+      editing: false,
+      mainTeaList: []
     }
   }
 
@@ -23,7 +23,7 @@ class TeaControl extends React.Component {
         editing: false
       });
     } else {
-      this.setState(prevState => ({
+      this.setState(pervState => ({
         formVisibleOnPage: !pervState.formVisibleOnPage
       }));
     }
@@ -43,7 +43,7 @@ class TeaControl extends React.Component {
 
   handleChangeSelectedTea = (id) => {
     const selectedTea = this.state.mainTeaList.filter(tea => tea.id === id)[0];
-    this.setState ({selectedTea: selectedTea});
+    this.setState ({ selectedTea: selectedTea });
   }
 
   handleEditingTeaInList = (teaToEdit) => {
@@ -54,7 +54,7 @@ class TeaControl extends React.Component {
       mainTeaList: editedMainTeaList,
       editing: false,
       selectedTea: null
-    })
+    });
   }
 
   handleDeleteTea = (id) => {
@@ -67,8 +67,9 @@ class TeaControl extends React.Component {
 
   handleTeaSale = (id) => {
     const selectedTea = this.state.mainTeaList.filter(tea => tea.id === id)[0];
-    if (selectedTea.quantity >=1) {
-      const soldTea = { ...selectedTea, size: selectedTea.size -1};
+    console.log(id)
+    if (selectedTea.available >=1) {
+      const soldTea = { ...selectedTea, available: selectedTea.available -1};
       const newMainTeaList = this.state.mainTeaList.filter(tea => tea.id !== id).concat(soldTea);
       this.setState({
         mainTeaList: newMainTeaList
@@ -81,7 +82,7 @@ class TeaControl extends React.Component {
     let buttonText = null;
 
     if (this.state.editing) {
-      currentlyVisibleState = <EditTealForm
+      currentlyVisibleState = <EditTeaForm
         tea = {this.state.selectedTea}
         onEditOrder = {this.handleEditingTeaInList} />
       buttonText = "Return to Tea List";
@@ -103,10 +104,10 @@ class TeaControl extends React.Component {
     }
 
     return (
-      <>
+      <React.Fragment>
         {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
-      </>
+      </React.Fragment>
     )
   }
 }

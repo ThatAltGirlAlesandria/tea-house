@@ -11,7 +11,7 @@ export default function TeaList(props) {
   }
   
   return (
-    <>
+    <React.Fragment>
     <h3>Tea Inventory</h3>
     
     {props.teaList.map((tea) =>
@@ -20,17 +20,19 @@ export default function TeaList(props) {
       whenTeaClicked = { props.onTeaSelection }
       type = { tea.type }
       make = { tea.make }
+      description = { tea.description }
+      price = { tea.price }
       size = { tea.size }
+      available = { tea.available }
       id = { tea.id }
+      key = { tea.id }
       />
     )}
-    {emptyList}
-    </>
+    </React.Fragment>
   );
 }
 
 TeaList.propTypes = {
   teaList: PropTypes.array,
-  onTeaSelection: PropTypes.func,
-  onSellTeaClicked: PropTypes.func
+  onTeaSelection: PropTypes.func
 }
